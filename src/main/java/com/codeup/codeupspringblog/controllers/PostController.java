@@ -17,15 +17,17 @@ public class PostController {
     @GetMapping("/posts/{id}")
     @ResponseBody
     public String viewPost(@PathVariable long id) {
-        return "view an individual post";
+        return "view an individual post" + id;
     }
 
  //    TODO: GET	/posts/create	view the form for creating a post
     @GetMapping("/posts/create")
     @ResponseBody
     public String writePost() {
-        return "view the form for creating a post" + "<form method=POST href='/posts/create'>" +
-                "<input type='submit'></input>" + "</form>";
+        return "view the form for creating a post" +
+                "<form method=POST href='/posts/create'>" +
+                "<input type='submit'></input>" +
+                "</form>";
     }
 
  //    TODO: POST	/posts/create	create a new post
