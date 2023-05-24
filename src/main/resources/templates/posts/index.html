@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head th:replace="fragments :: header" />
+<body>
+<nav th:replace="fragments :: navbar" />
+
+<div class="row" th:if="${posts}">
+    <div th:each="post : ${posts}">
+        <div class="card" style="width: 100%">
+            <div class="card-body">
+                <h5 class="card-title"> [[${post.title}]] </h5>
+                <p class="card-text"> [[${post.body}]] </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer th:replace="fragments :: footer" />
+</body>
+</html>

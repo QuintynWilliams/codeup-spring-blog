@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head th:replace="fragments :: header" />
+<body>
+<nav th:replace="fragments :: navbar" />
+
+<div th:if="${post}">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title"> [[${post.title}]] </h5>
+            <p class="card-text"> [[${post.body}]] </p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <img class="card-img-top" src="https://placehold.co/600x400" alt="Card image cap">
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments :: footer" />
+</body>
+</html>

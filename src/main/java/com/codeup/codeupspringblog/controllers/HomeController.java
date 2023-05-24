@@ -4,12 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
- class HomeController {
+public class HomeController {
 
     @GetMapping("/")
     @ResponseBody
-    public String landing() {
-        return "This is the landing page!";
+    public String welcome() {
+        return "Landing Page";
     }
 
 }

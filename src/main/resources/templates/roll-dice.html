@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="UTF-8">
+    <title>Roll-Dice</title>
+</head>
+<body>
+
+<h1>Role the Dice!</h1>
+
+<ul>
+    <li>
+        <a href="/roll-dice/1"> 1 </a>
+    </li>
+    <li>
+        <a href="/roll-dice/2"> 2 </a>
+    </li>
+    <li>
+        <a href="/roll-dice/3"> 3 </a>
+    </li>
+    <li>
+        <a href="/roll-dice/4"> 4 </a>
+    </li>
+    <li>
+        <a href="/roll-dice/5"> 5 </a>
+    </li>
+    <li>
+        <a href="/roll-dice/6"> 6 </a>
+    </li>
+</ul>
+
+<div>
+    <p> You guessed: <span th:text="${n}"></span></p>
+    <p> Dice rolled: </p>
+    <div th:each="roll : ${rolls}">
+        <p th:text="${roll}" />
+    </div>
+    <h2> You got <span th:text="${count}"> </span> correct</h2>
+</div>
+
+
+
+</body>
+</html>
