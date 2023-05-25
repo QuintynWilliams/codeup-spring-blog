@@ -44,6 +44,19 @@ li {
 }
 
 
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--black);
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: var(--green);
+    box-shadow: 0 -110vh 0 100vh var(--orange);
+}
+
+
 /*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
 /*|<<>><<>><<>><< NAVBAR >><<>><<>><<>>|*/
 /*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
@@ -152,6 +165,12 @@ input[type=checkbox] { display: none; }
 /*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
 .feed {
     padding: 5px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: start;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .card {
@@ -159,24 +178,29 @@ input[type=checkbox] { display: none; }
     border-bottom: 1px solid var(--black);
     margin: 5px 0;
     padding: 10px;
+    width: 450px;
+    height: 150px;
+    align-content: start;
 }
 
 .card-body {
-    width: 80vw;
     display: flex;
     flex-direction: column;
     gap: 5px;
+    min-height: 100%;
+    min-width: 100%;
     justify-content: space-between;
 }
 
 .card-title {
     text-align: left;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
     color: var(--black);
 }
 
 .card-text {
+    font-size: 14px;
     text-align: left;
     font-weight: lighter;
 }
@@ -196,6 +220,7 @@ input[type=checkbox] { display: none; }
 .card .btn:hover {
     background-position: left;
 }
+
 
 /*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
 /*|<<>><<>><<>><< FOOTER >><<>><<>><<>>|*/
