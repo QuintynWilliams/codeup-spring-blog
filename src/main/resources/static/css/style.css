@@ -4,7 +4,7 @@
 :root {
     --blue: #33A0FF;
     --green: #33ff92;
-    --orange: #ffae00;
+    --orange: #ffa83a;
     --yellow: #FFDB33;
     --black: #252525;
     --dietBlack: #2a2a2a;
@@ -162,6 +162,7 @@ input[type=checkbox] { display: none; }
 }
 
 .card-body {
+    width: 80vw;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -169,28 +170,32 @@ input[type=checkbox] { display: none; }
 }
 
 .card-title {
+    text-align: left;
     font-weight: bold;
     font-size: 18px;
     color: var(--black);
 }
 
 .card-text {
+    text-align: left;
     font-weight: lighter;
 }
 
-.btn {
+.card .btn {
     padding: 3px 10px;
     border-radius: 99px;
     border: 1px solid var(--black);
     font-weight: bold;
     font-size: 10px;
+    max-width: fit-content;
+    align-self: end;
+    background: var(--green) linear-gradient(to left, var(--green) 50%, var(--orange) 50%) right;
+    background-size: 200%;
+    transition: .5s ease-out;
 }
-
-.btn-primary {
-
+.card .btn:hover {
+    background-position: left;
 }
-
-
 
 /*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
 /*|<<>><<>><<>><< FOOTER >><<>><<>><<>>|*/

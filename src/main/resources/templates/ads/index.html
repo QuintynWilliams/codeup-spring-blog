@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head th:replace="~{fragments :: header}"></head>
+<body>
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<div class="page-wrapper">
+    <div class="container feed" >
+        <div class="row">
+            <div class="column">
+
+                <div class="column" th:if="${ads}">
+                    <div th:each="ad : ${ads}">
+                        <div class="card container" style="width: 100%">
+                            <div class="card-body">
+                                <div class="card-title"> [[${ad.title}]] </div>
+                                <p class="card-text"> [[${ad.description}]] </p>
+                                <a href="/posts/show" class="btn btn-primary">Feed</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>
