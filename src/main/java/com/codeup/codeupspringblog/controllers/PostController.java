@@ -1,7 +1,9 @@
 package com.codeup.codeupspringblog.controllers;
 
 import com.codeup.codeupspringblog.models.Post;
+import com.codeup.codeupspringblog.models.User;
 import com.codeup.codeupspringblog.repositories.PostRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -98,9 +100,11 @@ public class PostController {
     }
 
     @PostMapping("/create")
-    public String submitPost(@RequestParam(name = "title") String title,
+    public String submitPost(HttpSession session,
+                            @RequestParam(name = "title") String title,
                              @RequestParam(name = "body") String body){
-        Post post = new Post(title, body);
+        User user = (User) session.getAttribute("user");
+        Post post = new Post(user, title, body);
         postsDao.save(post);
         return "redirect:/posts";
     }

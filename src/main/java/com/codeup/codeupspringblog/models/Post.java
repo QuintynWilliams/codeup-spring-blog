@@ -10,9 +10,9 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(nullable = false, length = 100)
     private String title;
@@ -46,7 +46,8 @@ public class Post {
     }
 
     public Post() {}
-    public Post(String title, String body) {
+    public Post(User user, String title, String body) {
+        this.user = user;
         this.title = title;
         this.body = body;
     }
