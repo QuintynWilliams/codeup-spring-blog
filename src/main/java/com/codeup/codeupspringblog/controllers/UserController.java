@@ -44,6 +44,18 @@ public class UserController {
         }
     }
 
+/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
+/*|<<>><<>><<>  USER LOGOUT <>><<>><<>>|*/
+/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
+    @GetMapping("/logout")
+    public String login(HttpSession session){
+        if (session.getAttribute("user") != null) {
+            session.invalidate();
+            return "/posts/login";
+        }
+        return "redirect:/posts";
+    }
+
 
 /*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
 /*|<<>><<>><<  USER REGISTER >><<>><<>>|*/
