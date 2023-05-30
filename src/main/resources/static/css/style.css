@@ -184,9 +184,10 @@ input[type=checkbox] { display: none; }
     border-bottom: 1px solid var(--black);
     margin: 5px 0;
     padding: 10px;
-    width: 450px;
-    height: 150px;
+    min-width: 450px;
+    min-height: 150px;
     align-content: start;
+    overflow: hidden;
 }
 
 .card-body {

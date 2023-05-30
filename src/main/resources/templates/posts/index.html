@@ -5,31 +5,30 @@
 <nav th:replace="~{fragments :: navbar}"></nav>
 
 <div class="page-wrapper">
-    <div class="container feed" >
-        <div class="row">
-            <div class="column">
+  <div class="container feed" >
+    <div class="row">
+      <div class="column">
 
-                <div class="column" th:if="${allPosts}">
-                    <div th:each="post : ${allPosts}">
-                        <div class="card container" style="width: 100%">
-                            <div class="card-body">
-                                <div class="card-title"> [[${post.title}]] </div>
-                                <p class="card-text"> [[${post.body}]] </p>
-<!--                                post.id-->
-                                <a th:href="${post.id}" class="btn btn-primary">Feed</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ani-logo">
-                    <div class="ani-spring"></div>
-                    <div class="ani-feed"></div>
-                </div>
-
+        <div class="column" th:if="${allPosts}">
+          <div th:each="post : ${allPosts}">
+            <div class="card container" style="width: 100%">
+              <div class="card-body">
+                <div class="card-title"> [[${post.title}]] </div>
+                <p class="card-text"> [[${post.body}]] </p>
+                <a th:href="${post.id}" class="btn btn-primary">View</a>
+              </div>
             </div>
+          </div>
         </div>
+
+        <div class="ani-logo">
+          <div class="ani-spring"></div>
+          <div class="ani-feed"></div>
+        </div>
+
+      </div>
     </div>
+  </div>
 </div>
 
 <footer th:replace="~{fragments :: footer}"></footer>

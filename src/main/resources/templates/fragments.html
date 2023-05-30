@@ -28,19 +28,37 @@
       <div class="menu">
         <li><a href="/posts">All</a></li>
         <li><a href="/create">Create</a></li>
-  <!--      <li class="services">-->
-  <!--        <a href="/">Services</a>-->
-  <!--      &lt;!&ndash; DROPDOWN MENU &ndash;&gt;-->
-  <!--        <ul class="dropdown">-->
-  <!--          <li><a href="/">Dropdown 1 </a></li>-->
-  <!--          <li><a href="/">Dropdown 2</a></li>-->
-  <!--          <li><a href="/">Dropdown 2</a></li>-->
-  <!--          <li><a href="/">Dropdown 3</a></li>-->
-  <!--          <li><a href="/">Dropdown 4</a></li>-->
-  <!--        </ul>-->
-  <!--      </li>-->
-  <!--      <li><a href="/">Pricing</a></li>-->
-  <!--      <li><a href="/">Contact</a></li>-->
+        <li><a href="/login">Login</a></li>
+
+<!--        <div th:if="${!user}" class="nb-li">-->
+<!--          <a class="nav-opt" href="/login">Login</a>-->
+<!--        </div>-->
+<!--        <div th:if="${!user}" class="nb-li">-->
+<!--          <a class="nav-opt" href="/register">Register</a>-->
+<!--        </div>-->
+
+<!--        <div th:if="${user}" class="nb-li">-->
+<!--          <a class="nav-opt" href="/logout">Logout</a>-->
+<!--        </div>-->
+<!--        <div th:if="${user}" class="nb-li">-->
+<!--          <a class="nav-opt" href="/profile">Profile</a>-->
+<!--        </div>-->
+
+<!--
+        <li class="services">
+          <a href="/">Services</a>
+        DROPDOWN MENU
+        <ul class="dropdown">
+          <li><a href="/">Dropdown 1 </a></li>
+          <li><a href="/">Dropdown 2</a></li>
+          <li><a href="/">Dropdown 2</a></li>
+          <li><a href="/">Dropdown 3</a></li>
+          <li><a href="/">Dropdown 4</a></li>
+        </ul>
+        </li>
+        <li><a href="/">Pricing</a></li>
+        <li><a href="/">Contact</a></li>
+-->
       </div>
     </ul>
   </nav>

@@ -94,7 +94,6 @@ public class PostController {
 /*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
     @GetMapping("/create")
     public String createPost(){
-        System.out.println("Create a post");
         return "/posts/create";
     }
 
