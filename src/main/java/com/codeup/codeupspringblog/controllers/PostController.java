@@ -1,16 +1,28 @@
 package com.codeup.codeupspringblog.controllers;
 
-import com.codeup.codeupspringblog.models.Coffee;
 import com.codeup.codeupspringblog.models.Post;
+import com.codeup.codeupspringblog.repositories.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class PostController {
+
+    private PostRepository postsDao;
+
+    public PostController(PostRepository postsDao){
+        this.postsDao = postsDao;
+    }
+
+//    private UserRepository userDao;
+//
+//    public UserController(UserRepository userDao){
+//        this.userDao = userDao;
+//    }
+
 
 ////  TODO: GET	/posts	posts index page
 //    @GetMapping("/posts")
@@ -43,24 +55,54 @@ public class PostController {
 //        return "created a post";
 //    }
 
-//  TODO: GET   view all posts
-    @GetMapping("/posts/index")
-    public String allPosts(Model model) {
-        Post userPostOne = new Post("My First Post", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid consectetur delectus dolore molestiae necessitatibus perferendis provident recusandae veritatis voluptas. At consequuntur doloribus, iste odit pariatur praesentium quas sequi suscipit?");
-        Post userPostTwo = new Post("My Second Post", "Aperiam atque dolore, facilis ipsum laborum reprehenderit tenetur! Corporis deleniti tenetur voluptate. Aliquid doloremque neque officiis pariatur possimus, provident repellat tenetur vitae? Lorem ipsum dolor sit amet, consectetur adipisicing elit.");
-        List<Post> allPosts = new ArrayList<>(List.of(userPostOne, userPostTwo));
-        model.addAttribute("posts", allPosts);
-        return "/posts/index";
+/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
+/*|<<>><<>><<>> SHOW POSTS <<>><<>><<>>|*/
+/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
+
+//    @GetMapping("/posts/index")
+//    public String allPosts(Model model) {
+//        Post userPostOne = new Post("My First Post", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid consectetur delectus dolore molestiae necessitatibus perferendis provident recusandae veritatis voluptas. At consequuntur doloribus, iste odit pariatur praesentium quas sequi suscipit?");
+//        Post userPostTwo = new Post("My Second Post", "Aperiam atque dolore, facilis ipsum laborum reprehenderit tenetur! Corporis deleniti tenetur voluptate. Aliquid doloremque neque officiis pariatur possimus, provident repellat tenetur vitae? Lorem ipsum dolor sit amet, consectetur adipisicing elit.");
+//        List<Post> allPosts = new ArrayList<>(List.of(userPostOne, userPostTwo));
+//        model.addAttribute("posts", allPosts);
+//        return "/posts/index";
+//    }
+//
+//    @GetMapping("/posts/show")
+//    public String viewPost(Model model) {
+//        Post userPost = new Post("My First Post", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid consectetur delectus dolore molestiae necessitatibus perferendis provident recusandae veritatis voluptas. At consequuntur doloribus, iste odit pariatur praesentium quas sequi suscipit?");
+//        model.addAttribute("post", userPost);
+//        return "posts/show";
+//    }
+    @GetMapping("/posts")
+    public String allPosts(Model model){
+        List<Post> allPosts = postsDao.findAll();
+        model.addAttribute("allPosts", allPosts);
+        return "posts/index";
     }
 
-//  TODO: GET   view one post
-    @GetMapping("/posts/show")
-    public String viewPost(Model model) {
-        Post userPost = new Post("My First Post", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid consectetur delectus dolore molestiae necessitatibus perferendis provident recusandae veritatis voluptas. At consequuntur doloribus, iste odit pariatur praesentium quas sequi suscipit?");
-        model.addAttribute("post", userPost);
+    @GetMapping("/{id}")
+    public String onePost(@PathVariable long id, Model model){
+        Post post = postsDao.findById(id);
+        model.addAttribute("post", post);
         return "posts/show";
     }
 
 
+/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
+/*|<<>><<>><<> CREATE POSTS <>><<>><<>>|*/
+/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
+    @GetMapping("/create")
+    public String createPost(){
+        System.out.println("Create a post");
+        return "/posts/create";
+    }
+
+    @PostMapping("/create")
+    public String submitPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
+        Post post = new Post(title, body);
+        postsDao.save(post);
+        return "redirect:/posts";
+    }
 
 }

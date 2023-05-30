@@ -24,11 +24,13 @@ public class AdController {
         return "ads/index";
     }
 
+//  GET/ONLOAD
     @GetMapping("/ads/create")
     public String createAdForm() {
         return "ads/create";
     }
 
+//  POST/SUBMIT
     @PostMapping("/ads/create")
     public String createAd(@RequestParam(name = "title") String title,
                            @RequestParam(name = "description") String description) {
