@@ -28,21 +28,21 @@
       <div class="menu">
         <li><a href="/posts">All</a></li>
         <li><a href="/create">Create</a></li>
-        <li><a href="/login">Login</a></li>
+<!--        <li><a href="/login">Login</a></li>-->
 
-<!--        <div th:if="${!user}" class="nb-li">-->
-<!--          <a class="nav-opt" href="/login">Login</a>-->
-<!--        </div>-->
-<!--        <div th:if="${!user}" class="nb-li">-->
-<!--          <a class="nav-opt" href="/register">Register</a>-->
-<!--        </div>-->
+        <div th:if="${session.user == null}" class="nb-li">
+          <li><a class="nav-opt" href="/login">Login</a></li>
+        </div>
+        <div th:if="${session.user == null}" class="nb-li">
+          <li><a class="nav-opt" href="/register">Register</a></li>
+        </div>
 
-<!--        <div th:if="${user}" class="nb-li">-->
-<!--          <a class="nav-opt" href="/logout">Logout</a>-->
-<!--        </div>-->
-<!--        <div th:if="${user}" class="nb-li">-->
-<!--          <a class="nav-opt" href="/profile">Profile</a>-->
-<!--        </div>-->
+        <div th:if="${session.user != null}" class="nb-li">
+          <li><a class="nav-opt" href="/logout">Logout</a></li>
+        </div>
+        <div th:if="${session.user != null}" class="nb-li">
+          <li><a class="nav-opt" href="/profile">Profile</a></li>
+        </div>
 
 <!--
         <li class="services">
