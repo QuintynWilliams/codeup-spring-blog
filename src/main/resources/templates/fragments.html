@@ -27,8 +27,6 @@
       <!-- NAVIGATION MENUS -->
       <div class="menu">
         <li><a href="/posts">All</a></li>
-        <li><a href="/create">Create</a></li>
-<!--        <li><a href="/login">Login</a></li>-->
 
         <div th:if="${session.user == null}" class="nb-li">
           <li><a class="nav-opt" href="/login">Login</a></li>
@@ -37,6 +35,9 @@
           <li><a class="nav-opt" href="/register">Register</a></li>
         </div>
 
+        <div th:if="${session.user != null}" class="nb-li">
+        <li><a class="nav-opt" href="/create">Create</a></li>
+        </div>
         <div th:if="${session.user != null}" class="nb-li">
           <li><a class="nav-opt" href="/logout">Logout</a></li>
         </div>

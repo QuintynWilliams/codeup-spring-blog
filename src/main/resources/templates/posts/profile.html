@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head th:replace="~{fragments :: header}"></head>
+<body>
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<div class="page-wrapper">
+<div class="container feed">
+<div class="row">
+<div class="column">
+
+    <div th:if="${session.user}" class="form-group-wrapper">
+        <h1>Welcome, [[${session.user.username}]]!</h1>
+
+        <h3>Your Data</h3>
+        <div class="card">
+            <div class="card-body">
+                <p>[[${session.user.username}]]</p>
+                <p>[[${session.user.email}]]</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div>
+</div>
+</div>
+
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

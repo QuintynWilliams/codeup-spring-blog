@@ -95,13 +95,16 @@ public class PostController {
 /*|<<>><<>><<> CREATE POSTS <>><<>><<>>|*/
 /*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
     @GetMapping("/create")
-    public String createPost(){
+    public String createPost(HttpSession session){
+        if (session.getAttribute("user") == null) {
+            return "/posts/login";
+        }
         return "/posts/create";
     }
 
     @PostMapping("/create")
     public String submitPost(HttpSession session,
-                            @RequestParam(name = "title") String title,
+                             @RequestParam(name = "title") String title,
                              @RequestParam(name = "body") String body){
         User user = (User) session.getAttribute("user");
         Post post = new Post(user, title, body);

@@ -1,11 +1,15 @@
 package com.codeup.codeupspringblog.controllers;
 
+import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
 import com.codeup.codeupspringblog.repositories.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.text.AttributedString;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -81,5 +85,21 @@ public class UserController {
         userDao.save(newUser);
         return "redirect:/login";
     }
+
+
+/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
+/*|<<>><<>><<> USER PROFILE <>><<>><<>>|*/
+/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
+    @GetMapping("/profile")
+    public String userProfile(@ModelAttribute("user") User user,
+                              HttpSession session,
+                              Model model){
+        if (session.getAttribute("user") == null) {
+            return "/posts/register";
+        }
+        model.addAttribute("user", user);
+        return "/posts/profile";
+    }
+
 
 }
