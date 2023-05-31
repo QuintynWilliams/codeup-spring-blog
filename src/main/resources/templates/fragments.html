@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta charset="UTF-8">
     <title>FeedSpring</title>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/css/imgs/balloon.svg}" />
     <link rel="stylesheet" th:href="@{/css/resets.css}">
     <link rel="stylesheet" th:href="@{/css/layout.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
@@ -16,11 +17,15 @@
 <!--TODO: NAVBAR-->
   <nav class="navbar" th:fragment="navbar">
     <!-- LOGO -->
-    <div class="ani-logo row no-gap">
-      <div class="runner"></div>
-      <div class="ani-spring">feed</div>
-      <div class="ani-feed">Spring</div>
+    <div class="row no-gap">
+      <img src="/css/imgs/balloon.svg" alt="feedspring_logo">
+      <div class="ani-logo row no-gap">
+        <div class="runner"></div>
+        <div class="ani-spring">feed</div>
+        <div class="ani-feed">Spring</div>
+      </div>
     </div>
+
 <!--    <div class="logo">-->
 <!--      Spring<span style="color: var(&#45;&#45;green);">Feed</span>-->
 <!--    </div>-->

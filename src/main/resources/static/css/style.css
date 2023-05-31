@@ -138,7 +138,7 @@ li {
 .menu {
     display: flex;
     /*gap: 1em;*/
-    font-size: 18px;
+    /*font-size: 18px;*/
 }
 
 .menu li {
@@ -281,7 +281,7 @@ input[type=checkbox] { display: none; }
     border-radius: 99px;
     border: 1px solid var(--black);
     font-weight: bold;
-    font-size: 10px;
+    font-size: 12px;
     max-width: fit-content;
     align-self: end;
     background: var(--green) linear-gradient(to left, var(--green) 50%, var(--orange) 50%) right;
@@ -292,19 +292,19 @@ input[type=checkbox] { display: none; }
     background-position: left;
 }
 
-.card .btn-secondary {
+.btn-secondary {
     padding: 3px 10px;
     border-radius: 99px;
     border: 1px solid var(--black);
     font-weight: bold;
-    font-size: 10px;
+    font-size: 12px;
     max-width: fit-content;
     align-self: end;
     background: var(--orange);
     background-size: 200%;
     transition: background .3s ease-out;
 }
-.card .btn-secondary:hover {
+.btn-secondary:hover {
     background-position: left;
 }
 

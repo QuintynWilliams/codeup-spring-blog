@@ -23,21 +23,27 @@
                             <p class="row post-title"> [[${post.title}]] </p>
                         </div>
                         <p class="post-text"> [[${post.body}]] </p>
-                    </div>
-                    <div th:if="${post.comments.size()>0}">
-                        <h3>Comments</h3>
-                        <ul>
-                            <li th:each="comment: ${post.comments}">
-                                <p th:text="${comment.content}"></p>
-                            </li>
-                        </ul>
+
+                        <div th:if="${post.comments.size()>0}">
+                            <h3>Comments</h3>
+                            <div class="column justify-bottom gap-15">
+                                <div th:each="comment: ${post.comments}" class="row">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                        </svg>
+                                        <p th:text="${comment.user.username}"></p>
+                                    </div>
+                                    <p th:text="${comment.content}"></p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
-
-                <div th:if="${session.user == null}" class="nb-li">
-                    <li><a class="nav-opt" href="/login">Comment</a></li>
-                </div>
+                <a th:if="${session.user == null}" href="/login" class="btn-secondary">Login</a>
 
                 <div th:if="${session.user != null}" class="nb-li">
                     <form action="/posts/comment" method="post">
