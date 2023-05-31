@@ -21,8 +21,11 @@ public class User {
     @Column(nullable = false, length = 128)
     private String password;
 
-    @OneToMany(cascade = CascadeType.MERGE)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<Post> posts;
+
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
+    private List<Comment> comments;
 
     public long getId() {
         return id;
@@ -57,6 +60,13 @@ public class User {
     }
     public void setPosts(List<Post> posts) {
         this.posts = posts;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public User(String username, String email, String password) {

@@ -1,14 +1,17 @@
 package com.codeup.codeupspringblog.controllers;
 
 import com.codeup.codeupspringblog.models.Ad;
+import com.codeup.codeupspringblog.models.Comment;
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
+import com.codeup.codeupspringblog.repositories.CommentRepository;
 import com.codeup.codeupspringblog.repositories.PostRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -17,10 +20,12 @@ public class PostController {
 
     private PostRepository postsDao;
     private UserRepository usersDao;
+    private CommentRepository commentsDao;
 
-    public PostController(PostRepository postsDao, UserRepository usersDao){
+    public PostController(PostRepository postsDao, UserRepository usersDao, CommentRepository commentsDao){
         this.postsDao = postsDao;
         this.usersDao = usersDao;
+        this.commentsDao = commentsDao;
     }
 
 
@@ -43,6 +48,18 @@ public class PostController {
         return "posts/show";
 }
 
+    @PostMapping("/posts/comment")
+    public String submitComment(HttpSession session,
+                                @RequestParam(name="content") String content,
+                                @RequestParam(name="postId") long postId,
+                                RedirectAttributes redirectAttributes) {
+        User user = (User) session.getAttribute("user");
+        Post post = postsDao.findById(postId);
+        Comment comment = new Comment(content, user, post);
+        commentsDao.save(comment);
+        redirectAttributes.addAttribute("Id", postId);
+        return "redirect:/{Id}";
+    }
 
 /*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
 /*|><<>><<>><<>><<>><<>><<>><<> CREATE POST <<>><<>><<>><<>><<>><<>><<>><<>><|*/
