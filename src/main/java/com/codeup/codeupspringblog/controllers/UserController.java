@@ -3,6 +3,7 @@ package com.codeup.codeupspringblog.controllers;
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
 import com.codeup.codeupspringblog.repositories.UserRepository;
+import com.codeup.codeupspringblog.util.Password;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +22,10 @@ public class UserController {
     }
 
 
-/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
-/*|<<>><<>><<>> USER LOGIN <<>><<>><<>>|*/
-/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
+/*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
+/*|><<>><<>><<>><<>><<>><<>><<>> USER LOGIN <<>><<>><<>><<>><<>><<>><<>><<>><|*/
+/*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
+
     @GetMapping("/login")
     public String login(@ModelAttribute("user") User user, HttpSession session){
         if (session.getAttribute("user") == null) {
@@ -38,9 +40,11 @@ public class UserController {
                             @RequestParam(name = "password") String password){
         User user = userDao.findByUsername(username);
 
+        boolean validAttempt = Password.check(password, user.getPassword());
+
         if (user == null) {
             return "redirect:/login";
-        } else if (!user.getPassword().equals(password)) {
+        } else if (!validAttempt) {
             return "redirect:/login";
         } else {
             session.setAttribute("user", user);
@@ -48,9 +52,10 @@ public class UserController {
         }
     }
 
-/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
-/*|<<>><<>><<>  USER LOGOUT <>><<>><<>>|*/
-/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
+
+/*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
+/*|><<>><<>><<>><<>><<>><<>><<> USER LOGOUT <<>><<>><<>><<>><<>><<>><<>><<>><|*/
+/*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
     @GetMapping("/logout")
     public String login(HttpSession session){
         if (session.getAttribute("user") != null) {
@@ -61,9 +66,9 @@ public class UserController {
     }
 
 
-/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
-/*|<<>><<>><<  USER REGISTER >><<>><<>>|*/
-/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
+/*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
+/*|><<>><<>><<>><<>><<>><<>><<> USER REGISTER >><<>><<>><<>><<>><<>><<>><<>><|*/
+/*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
     @GetMapping("/register")
     public String registerUser(@ModelAttribute("user") User user, HttpSession session){
         if (session.getAttribute("user") == null) {
@@ -81,15 +86,15 @@ public class UserController {
         if (!password.equals(conf_password)) {
             return "redirect:/register";
         }
-        User newUser = new User(username, email, password);
+        User newUser = new User(username, email, Password.hash(password));
         userDao.save(newUser);
         return "redirect:/login";
     }
 
 
-/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
-/*|<<>><<>><<> USER PROFILE <>><<>><<>>|*/
-/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
+/*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
+/*|><<>><<>><<>><<>><<>><<>><<> USER PROFILE <>><<>><<>><<>><<>><<>><<>><<>><|*/
+/*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
     @GetMapping("/profile")
     public String userProfile(@ModelAttribute("user") User user,
                               HttpSession session,
