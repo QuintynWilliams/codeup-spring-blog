@@ -27,9 +27,9 @@ public class Post {
         this.id = id;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
+    public User getUser() {
+        return user;
+    }
 
     public String getTitle() {
         return title;

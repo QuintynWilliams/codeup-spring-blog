@@ -75,6 +75,12 @@
 .row.grow {
     flex: 1 0 0;
 }
+.row.justify-space-evenly {
+    justify-content: space-evenly;
+}
+.row.justify-space-around {
+    justify-content: space-around;
+}
 
 /*
     The "column" is a container element that vertically separates its
@@ -105,6 +111,12 @@
 }
 .column.justify-space-between {
     justify-content: space-between;
+}
+.column.justify-space-evenly {
+    justify-content: space-evenly;
+}
+.column.justify-space-around {
+    justify-content: space-around;
 }
 
 /*

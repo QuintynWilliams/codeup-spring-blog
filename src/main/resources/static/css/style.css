@@ -8,6 +8,7 @@
     --yellow: #FFDB33;
     --black: #252525;
     --dietBlack: #2a2a2a;
+    --gray: #465444;
     --white: #FBFAF5;
 }
 
@@ -39,7 +40,6 @@ li {
     z-index: 2;
     color: var(--white);
     font-weight: lighter;
-    text-shadow: 1px -1px var(--dietBlack);
     max-width: 50px;
     border-radius: 5px;
 }
@@ -88,24 +88,20 @@ li {
 @-webkit-keyframes run {
     0% {
         left: 0;
-        width: 46px;
+        width: 32px;
         background-color: var(--orange);
     }
     90% {
-        left: 56%;
-        width: 36px;
+        left: 40%;
+        width: 46px;
         background-color: var(--green);
     }
     100% {
-        left: 56%;
-        width: 36px;
+        left: 40%;
+        width: 46px;
         background-color: var(--black);
     }
 }
-
-
-
-
 
 ::-webkit-scrollbar {
     width: 8px;
@@ -131,7 +127,9 @@ li {
     background-color: var(--black);
     color: var(--white);
 }
-.nav-links a { color: var(--white); }
+.nav-links a {
+    color: var(--white);
+}
 
 /* LOGO */
 .logo { font-size: 32px; }
@@ -142,16 +140,19 @@ li {
     /*gap: 1em;*/
     font-size: 18px;
 }
+
+.menu li {
+    text-align: center;
+    border: 1px solid var(--black);
+    padding: 2px 8px;
+}
+
 .menu li:hover {
-    background-color: var(--green);
+    text-shadow: 1px -1px var(--orange);
     border-radius: 5px;
     transition: 0.3s ease;
 }
-.menu li {
-    text-align: center;
-    border-bottom: 1px solid var(--black);
-    padding: 2px 8px;
-}
+
 
 /* DROPDOWN MENU */
 .services { position: relative; }
@@ -187,6 +188,8 @@ input[type=checkbox] { display: none; }
 /* APPLYING MEDIA QUERIES */
 @media (max-width: 768px) {
     .menu {
+        border-radius: 0 0 5px 5px;
+        padding: 2px;
         display:none;
         position: absolute;
         background-color: var(--dietBlack);
@@ -201,8 +204,6 @@ input[type=checkbox] { display: none; }
 
     .menu li:hover {
         display: inline-block;
-        background-color: var(--green);
-        transition: 0.3s ease;
         }
 
     .menu li + li {
@@ -248,7 +249,7 @@ input[type=checkbox] { display: none; }
     margin: 5px 0;
     padding: 10px;
     min-width: 450px;
-    min-height: 150px;
+    min-height: fit-content;
     align-content: start;
     overflow: hidden;
 }
@@ -290,6 +291,96 @@ input[type=checkbox] { display: none; }
 .card .btn:hover {
     background-position: left;
 }
+
+
+/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
+/*|<<>><<>><<>><<> POST <>><<>><<>><<>>|*/
+/*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
+.post {
+    width: 100%;
+    min-height: fit-content;
+    border-top: 1px solid var(--black);
+    border-bottom: 1px solid var(--black);
+    margin: 5px 0;
+    padding: 10px 20px;
+    align-content: start;
+}
+
+.post-body {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-height: 100%;
+    min-width: 100%;
+    justify-content: space-between;
+}
+
+.post-title {
+    font-weight: bold;
+    text-align: left;
+    font-size: 14px;
+}
+
+.post-user {
+    color: var(--green);
+    font-size: smaller;
+    text-align: end;
+}
+.post-user span:first-of-type {
+    color: var(--gray);
+    font-size: smaller;
+    text-align: end;
+}
+
+.post-text {
+    font-size: 14px;
+    text-align: left;
+    font-weight: lighter;
+}
+
+.post-return {
+    padding: 3px 10px;
+    margin-top: 15px;
+    border-radius: 0 99px 99px 0;
+    border: 1px solid var(--black);
+    font-weight: bold;
+    font-size: 10px;
+    max-width: fit-content;
+    align-self: end;
+    background: var(--black);
+}
+
+.post-return:after {
+    content: "Return";
+    color: var(--white);
+}
+
+.post-spring-btn {
+    padding: 3px 10px;
+    margin-top: 15px;
+    border-radius: 99px;
+    border: 1px solid var(--black);
+    font-size: 14px;
+    width: 50px;
+    align-self: end;
+    color: white;
+    text-shadow: 0 0 2px var(--black);
+    background: var(--orange);
+}
+
+.post-feed-btn {
+    padding: 3px 10px;
+    margin-top: 15px;
+    border-radius: 99px;
+    border: 1px solid var(--black);
+    font-size: 14px;
+    width: 50px;
+    align-self: end;
+    color: white;
+    text-shadow: 0 0 2px var(--black);
+    background: var(--green);
+}
+
 
 
 /*|<<>><<>><<>><<>><<>><<>><<>><<>><<>>|*/
@@ -370,3 +461,12 @@ ul.social-footer2 li a {display: block; height:30px;width: 30px;text-align: cent
 /*    -o-transition: 250ms ease-in-out 0s;*/
 /*    transition: 250ms ease-in-out 0s;*/
 /*}*/
+
+
+#login-btn {
+    margin-top: 7px;
+}
+
+#register-btn {
+     margin-top: 7px;
+ }

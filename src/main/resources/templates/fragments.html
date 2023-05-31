@@ -4,7 +4,7 @@
 <head th:fragment="header">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta charset="UTF-8">
-    <title>SpringFeed</title>
+    <title>FeedSpring</title>
     <link rel="stylesheet" th:href="@{/css/resets.css}">
     <link rel="stylesheet" th:href="@{/css/layout.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
@@ -18,8 +18,8 @@
     <!-- LOGO -->
     <div class="ani-logo row no-gap">
       <div class="runner"></div>
-      <div class="ani-spring">spring</div>
-      <div class="ani-feed">Feed</div>
+      <div class="ani-spring">feed</div>
+      <div class="ani-feed">Spring</div>
     </div>
 <!--    <div class="logo">-->
 <!--      Spring<span style="color: var(&#45;&#45;green);">Feed</span>-->
@@ -30,9 +30,10 @@
       <input type="checkbox" id="checkbox_toggle" />
       <label for="checkbox_toggle" class="hamburger">&#9776;</label>
       <!-- NAVIGATION MENUS -->
-      <div class="menu">
-        <li><a href="/posts">All</a></li>
-
+      <div class="menu row justify-space-between">
+        <div class="nb-li">
+          <li><a href="/posts">All</a></li>
+        </div>
         <div th:if="${session.user == null}" class="nb-li">
           <li><a class="nav-opt" href="/login">Login</a></li>
         </div>

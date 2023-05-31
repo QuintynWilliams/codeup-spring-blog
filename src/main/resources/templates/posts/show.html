@@ -7,14 +7,22 @@
 <div class="page-wrapper">
     <div class="container">
         <div class="row">
-            <div class="column">
+            <div class="column gap-10">
 
-                <div th:if="${post}" class="card" style="width: 100%">
-                    <a href="/posts" class="btn btn-primary">Return</a>
-                    <div class="card-body">
-                        <h5 class="card-title"> [[${post.title}]] </h5>
-                        <p class="card-text"> [[${post.body}]] </p>
-                        <img class="card-img-top" src="https://placehold.co/600x400" alt="Card image cap">
+                <div class="row">
+                    <a href="/posts" class="post-return"></a>
+                </div>
+
+                <div th:if="${post}" class="post">
+                    <div class="post-body column justify-center">
+                        <div class="column post-head shrink">
+                            <div class="row justify-space-between post-user" th:if="${user}">
+                                <span>[[${user.username}]]</span>
+                                <span>[[${user.email}]]</span>
+                            </div>
+                            <p class="row post-title"> [[${post.title}]] </p>
+                        </div>
+                        <p class="post-text"> [[${post.body}]] </p>
                     </div>
                 </div>
 
