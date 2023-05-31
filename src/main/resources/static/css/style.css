@@ -26,22 +26,85 @@ li {
     list-style: none;
 }
 
+/*Container*/
 .ani-logo {
-    min-width: 100px;
-    border: 1px solid black;
+    z-index: 0;
+    max-width: fit-content;
     border-radius: 5px;
     background-color: var(--black);
+    text-align: center;
+    position: relative;
 }
 .ani-spring {
-    border: 1px solid black;
+    z-index: 2;
+    color: var(--white);
+    font-weight: lighter;
+    text-shadow: 1px -1px var(--dietBlack);
+    max-width: 50px;
     border-radius: 5px;
-    background-color: var(--green);
 }
 .ani-feed {
-    border: 1px solid black;
+    z-index: 2;
+    color: var(--green);
+    max-width: 50px;
     border-radius: 5px;
-    background-color: var(--orange);
+    -webkit-animation: ease-in-out;
+    -webkit-animation-name: moodChange;
+    -webkit-animation-duration: 2s;
 }
+
+.runner {
+    z-index: 1;
+    position: absolute;
+    height: 24px;
+    width: 50px;
+    border-radius: 5px;
+    -webkit-animation: ease-in-out;
+    -webkit-animation-name: run;
+    -webkit-animation-duration: 2s;
+}
+
+@-webkit-keyframes moodChange {
+    0% {
+        color: var(--black);
+    }
+    25% {
+        color: var(--black);
+    }
+    50% {
+        color: var(--black);
+    }
+    75% {
+        color: var(--black);
+    }
+    90% {
+        color: var(--black);
+    }
+    100% {
+        color: var(--green);
+    }
+}
+
+@-webkit-keyframes run {
+    0% {
+        left: 0;
+        width: 46px;
+        background-color: var(--orange);
+    }
+    90% {
+        left: 56%;
+        width: 36px;
+        background-color: var(--green);
+    }
+    100% {
+        left: 56%;
+        width: 36px;
+        background-color: var(--black);
+    }
+}
+
+
+
 
 
 ::-webkit-scrollbar {
