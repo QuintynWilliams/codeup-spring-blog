@@ -71,7 +71,7 @@
 
                         <div class="column align-left">
                             <p class="comment-username" th:text="${session.user.username}"></p>
-                            <textarea name="content" id="content" rows="10" cols="20" maxlength="255"></textarea>
+                            <textarea name="content" id="content" maxlength="255"></textarea>
                             <input type="hidden" name="postId" th:value="${post.id}">
                         </div>
                         <button class="btn-secondary">Submit</button>

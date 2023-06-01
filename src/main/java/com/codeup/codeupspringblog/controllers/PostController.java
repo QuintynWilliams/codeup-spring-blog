@@ -1,12 +1,7 @@
 package com.codeup.codeupspringblog.controllers;
 
-import com.codeup.codeupspringblog.models.Ad;
-import com.codeup.codeupspringblog.models.Comment;
-import com.codeup.codeupspringblog.models.Post;
-import com.codeup.codeupspringblog.models.User;
-import com.codeup.codeupspringblog.repositories.CommentRepository;
-import com.codeup.codeupspringblog.repositories.PostRepository;
-import com.codeup.codeupspringblog.repositories.UserRepository;
+import com.codeup.codeupspringblog.models.*;
+import com.codeup.codeupspringblog.repositories.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,11 +23,11 @@ public class PostController {
         this.commentsDao = commentsDao;
     }
 
-
-/*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
-/*|><<>><<>><<>><<>><<>><<>><<>> SHOW POST ><<>><<>><<>><<>><<>><<>><<>><<>><|*/
-/*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
-
+/*
+|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|
+|><<>><<>><<>><<>><<>><<>><<>><<>><<SHOWPOST>><<>><<>><<>><<>><<>><<>><<>><<>><|
+|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|
+*/
     @GetMapping("/")
     public String allPosts(Model model) {
         List<Post> allPosts = postsDao.findAll();
@@ -62,9 +57,11 @@ public class PostController {
         return "redirect:/{Id}";
     }
 
-/*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
-/*|><<>><<>><<>><<>><<>><<>><<> CREATE POST <<>><<>><<>><<>><<>><<>><<>><<>><|*/
-/*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
+/*
+|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|
+|><<>><<>><<>><<>><<>><<>><<>><<>CREATE A POST <>><<>><<>><<>><<>><<>><<>><<>><|
+|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|
+*/
     @GetMapping("/create")
     public String createPost(HttpSession session, Model model) {
         if (session.getAttribute("user") == null) {
@@ -85,10 +82,11 @@ public class PostController {
         return "redirect:/posts";
     }
 
-
-/*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
-/*|><<>><<>><<>><<>><<>><<>><<>> EDIT POST ><<>><<>><<>><<>><<>><<>><<>><<>><|*/
-/*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
+/*
+|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|
+|><<>><<>><<>><<>><<>><<>><<>><<>><EDIT POST ><<>><<>><<>><<>><<>><<>><<>><<>><|
+|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|
+*/
     @GetMapping("/{id}/edit")
     public String editPost(HttpSession session,
                            @PathVariable long id,
