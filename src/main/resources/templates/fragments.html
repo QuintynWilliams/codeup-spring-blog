@@ -32,12 +32,17 @@
     <!-- NAVIGATION MENU -->
     <ul class="nav-links">
       <!-- USING CHECKBOX HACK -->
-      <input type="checkbox" id="checkbox_toggle" />
-      <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+      <input type="checkbox" class="checkbox" id="checkbox_toggle" />
+      <div class="hamburger-lines column align-center">
+        <span class="line line1"></span>
+        <span class="line line2"></span>
+        <span class="line line3"></span>
+      </div>
+<!--      <label for="checkbox_toggle" class="hamburger">&#9776;</label>-->
       <!-- NAVIGATION MENUS -->
       <div class="menu row justify-space-between">
         <div class="nb-li">
-          <li><a href="/posts">All</a></li>
+          <li><a href="/">All</a></li>
         </div>
         <div th:if="${session.user == null}" class="nb-li">
           <li><a class="nav-opt" href="/login">Login</a></li>

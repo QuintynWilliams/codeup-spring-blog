@@ -32,7 +32,8 @@ public class PostController {
 /*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
 /*|><<>><<>><<>><<>><<>><<>><<>> SHOW POST ><<>><<>><<>><<>><<>><<>><<>><<>><|*/
 /*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
-    @GetMapping("/posts")
+
+    @GetMapping("/")
     public String allPosts(Model model) {
         List<Post> allPosts = postsDao.findAll();
         model.addAttribute("allPosts", allPosts);

@@ -60,6 +60,9 @@
 .row.justify-center {
     justify-content: center;
 }
+.row.justify-left {
+    justify-content: start;
+}
 .row.justify-right {
     justify-content: end;
 }
@@ -100,11 +103,17 @@
 .column.align-center {
     align-items: center;
 }
+.column.align-left {
+    align-items: start;
+}
 .column.align-right {
     align-items: end;
 }
 .column.justify-center {
     justify-content: center;
+}
+.column.justify-top {
+    justify-content: start;
 }
 .column.justify-bottom {
     justify-content: end;
