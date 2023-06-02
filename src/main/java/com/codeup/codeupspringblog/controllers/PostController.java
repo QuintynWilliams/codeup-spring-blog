@@ -114,7 +114,7 @@ public class PostController {
         thingpost.setTitle(title);
         thingpost.setBody(body);
         postsDao.save(thingpost);
-        return "redirect:/posts";
+        return "redirect:/";
     }
 
 }
