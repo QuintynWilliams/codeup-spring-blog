@@ -120,6 +120,12 @@ li {
     background-color: var(--black);
     color: var(--white);
 }
+
+.navbar-content {
+    /*width: 100%;*/
+    /*max-width: 1100px;*/
+}
+
 .nav-links a {
     color: var(--white);
 }

@@ -2,6 +2,7 @@ package com.codeup.codeupspringblog.controllers;
 
 import com.codeup.codeupspringblog.models.*;
 import com.codeup.codeupspringblog.repositories.*;
+import com.codeup.codeupspringblog.services.EmailService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +14,13 @@ import java.util.List;
 @Controller
 public class PostController {
 
+    private final EmailService emailService;
     private PostRepository postsDao;
     private UserRepository usersDao;
     private CommentRepository commentsDao;
 
-    public PostController(PostRepository postsDao, UserRepository usersDao, CommentRepository commentsDao){
+    public PostController(EmailService emailService, PostRepository postsDao, UserRepository usersDao, CommentRepository commentsDao){
+        this.emailService = emailService;
         this.postsDao = postsDao;
         this.usersDao = usersDao;
         this.commentsDao = commentsDao;
@@ -67,6 +70,7 @@ public class PostController {
         if (session.getAttribute("user") == null) {
             return "/posts/login";
         }
+        session.getAttribute("user");
         model.addAttribute("post", new Post());
         return "/posts/create";
     }
@@ -79,7 +83,8 @@ public class PostController {
         User user = (User) session.getAttribute("user");
         post.setUser(user);
         postsDao.save(post);
-        return "redirect:/posts";
+        emailService.prepareAndSend(post, title, body);
+        return "redirect:/";
     }
 
 /*

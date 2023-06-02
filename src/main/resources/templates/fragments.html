@@ -15,157 +15,167 @@
 
 
 <!--TODO: NAVBAR-->
+  <nav class="navbar column" th:fragment="navbar">
 
-  <nav class="navbar" th:fragment="navbar">
-    <!-- LOGO -->
-    <div class="row no-gap">
-      <img id="feedspring_logo" src="/css/imgs/balloon.svg" alt="feedspring_logo">
-      <div class="ani-logo row no-gap">
-        <div class="runner"></div>
-        <div class="ani-spring">feed</div>
-        <div class="ani-feed">Spring</div>
+      <div class="navbar-content container grow">
+        <div class="row justify-space-between">
+
+<!--      LOGO -->
+          <div class="column">
+            <div class="row no-gap">
+              <img id="feedspring_logo" src="/css/imgs/balloon.svg" alt="feedspring_logo">
+              <div class="ani-logo row no-gap">
+                <div class="runner"></div>
+                <div class="ani-spring">feed</div>
+                <div class="ani-feed">Spring</div>
+              </div>
+            </div>
+          </div>
+
+<!--      NAVIGATION MENU -->
+          <div class="column shrink">
+            <div class="nav-links">
+              <!-- USING CHECKBOX HACK -->
+              <input type="checkbox" class="checkbox" id="checkbox_toggle" />
+              <div class="hamburger-lines column align-center">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+              </div>
+              <!--        NAVIGATION MENUS -->
+              <div class="menu row gap-30">
+                <div class="nb-li">
+                  <li><a href="/">All</a></li>
+                </div>
+                <div th:if="${session.user == null}" class="nb-li">
+                  <li><a class="nav-opt" href="/login">Login</a></li>
+                </div>
+                <div th:if="${session.user == null}" class="nb-li">
+                  <li><a class="nav-opt" href="/register">Register</a></li>
+                </div>
+
+                <div th:if="${session.user != null}" class="nb-li">
+                  <li><a class="nav-opt" href="/create">Create</a></li>
+                </div>
+                <div th:if="${session.user != null}" class="nb-li">
+                  <li><a class="nav-opt" href="/logout">Logout</a></li>
+                </div>
+                <div th:if="${session.user != null}" class="nb-li">
+                  <li><a class="nav-opt" href="/profile">Profile</a></li>
+                </div>
+
+                <!--
+                        <li class="services">
+                          <a href="/">Services</a>
+                        DROPDOWN MENU
+                        <ul class="dropdown">
+                          <li><a href="/">Dropdown 1 </a></li>
+                          <li><a href="/">Dropdown 2</a></li>
+                          <li><a href="/">Dropdown 2</a></li>
+                          <li><a href="/">Dropdown 3</a></li>
+                          <li><a href="/">Dropdown 4</a></li>
+                        </ul>
+                        </li>
+                        <li><a href="/">Pricing</a></li>
+                        <li><a href="/">Contact</a></li>
+                -->
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
 
-    <!--    <div class="logo">-->
-    <!--      Spring<span style="color: var(&#45;&#45;green);">Feed</span>-->
-    <!--    </div>-->
-    <!-- NAVIGATION MENU -->
-    <ul class="nav-links">
-      <!-- USING CHECKBOX HACK -->
-      <input type="checkbox" class="checkbox" id="checkbox_toggle" />
-      <div class="hamburger-lines column align-center">
-        <span class="line line1"></span>
-        <span class="line line2"></span>
-        <span class="line line3"></span>
-      </div>
-      <!--      <label for="checkbox_toggle" class="hamburger">&#9776;</label>-->
-      <!-- NAVIGATION MENUS -->
-      <div class="menu row justify-space-between">
-        <div class="nb-li">
-          <li><a href="/">All</a></li>
-        </div>
-        <div th:if="${session.user == null}" class="nb-li">
-          <li><a class="nav-opt" href="/login">Login</a></li>
-        </div>
-        <div th:if="${session.user == null}" class="nb-li">
-          <li><a class="nav-opt" href="/register">Register</a></li>
-        </div>
 
-        <div th:if="${session.user != null}" class="nb-li">
-          <li><a class="nav-opt" href="/create">Create</a></li>
-        </div>
-        <div th:if="${session.user != null}" class="nb-li">
-          <li><a class="nav-opt" href="/logout">Logout</a></li>
-        </div>
-        <div th:if="${session.user != null}" class="nb-li">
-          <li><a class="nav-opt" href="/profile">Profile</a></li>
-        </div>
-
-        <!--
-                <li class="services">
-                  <a href="/">Services</a>
-                DROPDOWN MENU
-                <ul class="dropdown">
-                  <li><a href="/">Dropdown 1 </a></li>
-                  <li><a href="/">Dropdown 2</a></li>
-                  <li><a href="/">Dropdown 2</a></li>
-                  <li><a href="/">Dropdown 3</a></li>
-                  <li><a href="/">Dropdown 4</a></li>
-                </ul>
-                </li>
-                <li><a href="/">Pricing</a></li>
-                <li><a href="/">Contact</a></li>
-        -->
-      </div>
-    </ul>
   </nav>
 
 <!--TODO: FOOTER-->
-      <footer id="footer" class="column gap-30 footer-1" th:fragment="footer">
-        <div class="row justify-center main-footer widgets-dark typo-light">
-          <div class="container">
-            <div class="row">
+    <footer id="footer" class="column align-center gap-30" th:fragment="footer">
+      <div class="container">
+      <div class="row justify-center">
+        <div class="container">
+          <div class="row">
 
-              <div class="column gap-10 justify-top">
-                <div class="row">
-                  <h5 class="widget-title column grow">SpringFeed<span></span></h5>
-                </div>
-                <div class="row" >
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                </div>
+            <div class="column gap-10 justify-top">
+              <div class="row">
+                <h5 class="widget-title column grow">SpringFeed<span></span></h5>
               </div>
-
-              <div class="column gap-10 justify-top">
-                <div class="row">
-                  <h5 class="widget-title column grow">Quick Links<span></span></h5>
-                </div>
-                <div class="thumbnail-widget column gap-10">
-                    <div class="thumb-content"><a href="#">Get Started</a></div>
-                    <div class="thumb-content"><a href="#">Top Leaders</a></div>
-                    <div class="thumb-content"><a href="#">Success Stories</a></div>
-                    <div class="thumb-content"><a href="#">Event/Tickets</a></div>
-                    <div class="thumb-content"><a href="#">News</a></div>
-                    <div class="thumb-content"><a href="#">Lifestyle</a></div>
-                    <div class="thumb-content"><a href="#">About</a></div>
-                </div>
+              <div class="row" >
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
               </div>
+            </div>
 
-              <div class="column gap-10 justify-top">
-                <div class="row">
-                  <h5 class="widget-title column grow">Get Started<span></span></h5>
-                </div>
+            <div class="column gap-10 justify-top">
+              <div class="row">
+                <h5 class="widget-title column grow">Quick Links<span></span></h5>
               </div>
+              <div class="column gap-10 thumbnail-widget">
+                  <div class="thumb-content"><a href="#">Get Started</a></div>
+                  <div class="thumb-content"><a href="#">Top Leaders</a></div>
+                  <div class="thumb-content"><a href="#">Success Stories</a></div>
+                  <div class="thumb-content"><a href="#">Event/Tickets</a></div>
+                  <div class="thumb-content"><a href="#">News</a></div>
+                  <div class="thumb-content"><a href="#">Lifestyle</a></div>
+                  <div class="thumb-content"><a href="#">About</a></div>
+              </div>
+            </div>
 
-              <div class="column gap-10 justify-top">
+            <div class="column gap-10 justify-top">
+              <div class="row">
+                <h5 class="widget-title column grow">Get Started<span></span></h5>
+              </div>
+            </div>
+
+            <div class="column gap-10 justify-top">
+              <div class="row">
+                <h5 class="column grow widget-title">Contact Us<span></span></h5>
+              </div>
+              <div class="column gap-10">
                 <div class="row">
-                  <h5 class="widget-title column grow">Contact Us<span></span></h5>
+                  <a href="mailto:info@domain.com" title="glorythemes">info@domain.com</a>
                 </div>
-                <div class="column gap-10">
-                  <div class="row">
-                    <a href="mailto:info@domain.com" title="glorythemes">info@domain.com</a>
+                <div class="row social-footer2 justify-space-between">
+                  <div class="column justify-center">
+                    <a title="youtube" target="_blank" href="https://www.youtube.com">
+                      <img src="/css/imgs/youtube.svg" alt="youtube_logo">
+                    </a>
                   </div>
-                  <div class="social-footer2 row justify-space-between">
-                    <div class="column justify-center">
-                      <a title="youtube" target="_blank" href="https://www.youtube.com">
-                        <img src="/css/imgs/youtube.svg" alt="youtube_logo">
-                      </a>
-                    </div>
-                    <div class="column justify-center">
-                      <a title="Facebook" target="_blank"  href="https://www.facebook.com/">
-                        <img src="/css/imgs/facebook.svg" alt="facebook_logo">
-                      </a>
-                    </div>
-                    <div class="column justify-center">
-                      <a title="Twitter" target="_blank" href="https://twitter.com">
-                        <img src="/css/imgs/twitter.svg" alt="twitter_logo">
-                      </a>
-                    </div>
-                    <div class="column justify-center">
-                      <a title="instagram" target="_blank" href="https://www.instagram.com/">
-                        <img src="/css/imgs/instagram.svg" alt="instagram_logo">
-                      </a>
-                    </div>
+                  <div class="column justify-center">
+                    <a title="Facebook" target="_blank"  href="https://www.facebook.com/">
+                      <img src="/css/imgs/facebook.svg" alt="facebook_logo">
+                    </a>
+                  </div>
+                  <div class="column justify-center">
+                    <a title="Twitter" target="_blank" href="https://twitter.com">
+                      <img src="/css/imgs/twitter.svg" alt="twitter_logo">
+                    </a>
+                  </div>
+                  <div class="column justify-center">
+                    <a title="instagram" target="_blank" href="https://www.instagram.com/">
+                      <img src="/css/imgs/instagram.svg" alt="instagram_logo">
+                    </a>
                   </div>
                 </div>
-
               </div>
 
+            </div>
 
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row footer-copyright">
+        <div class="container">
+          <div class="row justify-center">
+            <div class="col-md-12 text-center">
+              <p>Copyright Company Name © 2022. All rights reserved.</p>
             </div>
           </div>
         </div>
-
-        <div class="row justify-center footer-copyright">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12 text-center">
-                <p>Copyright Company Name © 2022. All rights reserved.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      </div>
+      </div>
+    </footer>
 
 
 </body>
