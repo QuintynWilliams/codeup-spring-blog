@@ -31,14 +31,14 @@ public class PostController {
 |><<>><<>><<>><<>><<>><<>><<>><<>><<SHOWPOST>><<>><<>><<>><<>><<>><<>><<>><<>><|
 |><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|
 */
-    @GetMapping("/")
+    @GetMapping("/posts")
     public String allPosts(Model model) {
         List<Post> allPosts = postsDao.findAll();
         model.addAttribute("allPosts", allPosts);
         return "posts/index";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/posts/{id}")
     public String onePost(@PathVariable long id, Model model) {
         Post post = postsDao.findById(id);
         User user = post.getUser();

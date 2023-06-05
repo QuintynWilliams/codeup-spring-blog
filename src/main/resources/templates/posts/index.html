@@ -11,6 +11,7 @@
 
         <div class="column" th:if="${allPosts}">
           <div th:each="post : ${allPosts}">
+
             <div class="card container" style="width: 100%">
               <div class="card-body">
                 <div class="card-title"> [[${post.title}]] </div>
@@ -18,17 +19,13 @@
 <!--                <a th:href="${post.id}" class="btn btn-primary">View</a>-->
 
                 <div th:if="${session.user == null}" class="row justify-right">
-                  <a th:href="${post.id}" class="btn btn-primary">View</a>
+                  <a th:href="${'posts/' + post.id}" class="btn btn-primary">View</a>
                 </div>
 
                 <div th:if="${session.user != null}" class="row justify-right">
-                  <a th:href="${post.id}" class="btn">View</a>
-                  <a th:if="${session.user.id} == ${post.user.id}" th:href="${post.id + '/edit'}"
-                     class="btn-secondary">
-                    Edit</a>
+                  <a th:href="${'posts/' + post.id}" class="btn">View</a>
+                  <a th:if="${session.user.id} == ${post.user.id}" th:href="${post.id + '/edit'}" class="btn-secondary">Edit</a>
                 </div>
-
-
               </div>
 
             </div>
