@@ -4,6 +4,7 @@ import com.codeup.codeupspringblog.models.*;
 import com.codeup.codeupspringblog.repositories.*;
 import com.codeup.codeupspringblog.services.EmailService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -48,16 +49,13 @@ public class PostController {
 }
 
     @PostMapping("/posts/comment")
-    public String submitComment(HttpSession session,
-                                @RequestParam(name="content") String content,
-                                @RequestParam(name="postId") long postId,
-                                RedirectAttributes redirectAttributes) {
-        User user = (User) session.getAttribute("user");
+    public String submitComment(@RequestParam(name="content") String content,
+                                @RequestParam(name="postId") long postId){
         Post post = postsDao.findById(postId);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Comment comment = new Comment(content, user, post);
         commentsDao.save(comment);
-        redirectAttributes.addAttribute("Id", postId);
-        return "redirect:/{Id}";
+        return "redirect:/posts";
     }
 
 /*
@@ -77,11 +75,11 @@ public class PostController {
                              @ModelAttribute Post post,
                              @RequestParam(name = "title") String title,
                              @RequestParam(name = "body") String body) {
-        User user = (User) session.getAttribute("user");
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         postsDao.save(post);
         emailService.prepareAndSend(post, title, body);
-        return "redirect:/";
+        return "redirect:/posts";
     }
 
 /*

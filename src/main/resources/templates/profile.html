@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:replace="~{fragments :: header}"></head>
 <body>
 <nav th:replace="~{fragments :: navbar}"></nav>
@@ -9,14 +9,14 @@
 <div class="row">
 <div class="column">
 
-    <div th:if="${session.user}" class="form-group-wrapper">
-        <h1>Welcome, [[${session.user.username}]]!</h1>
+    <div sec:authorize="isAuthenticated()" class="form-group-wrapper">
+        <h1>Welcome, <span th:text="${#authentication.principal.username}"></span></h1>
 
         <h3>Your Data</h3>
         <div class="card">
             <div class="card-body">
-                <p>[[${session.user.username}]]</p>
-                <p>[[${session.user.email}]]</p>
+                <p th:text="${#authentication.principal.username}"></p>
+                <p th:text="${#authentication.principal.email}"></p>
             </div>
         </div>
 

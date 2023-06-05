@@ -60,11 +60,11 @@
                   <li><a class="nav-opt" href="/create">Create</a></li>
                 </div>
                 <div sec:authorize="isAuthenticated()" class="nb-li">
-                    <li>
                       <form th:action="@{/logout}" th:method="post">
-                        <button class="nav-opt">Logout</button>
+                        <li>
+                          <button class="logout-btn">Logout</button>
+                        </li>
                       </form>
-                    </li>
                 </div>
                 <div sec:authorize="isAuthenticated()" class="nb-li">
                   <li><a class="nav-opt" href="/profile">Profile</a></li>
