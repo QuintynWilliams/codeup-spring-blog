@@ -67,9 +67,6 @@ public class PostController {
 */
     @GetMapping("/create")
     public String createPost(HttpSession session, Model model) {
-        if (session.getAttribute("user") == null) {
-            return "/posts/login";
-        }
         session.getAttribute("user");
         model.addAttribute("post", new Post());
         return "/posts/create";
@@ -96,9 +93,6 @@ public class PostController {
     public String editPost(HttpSession session,
                            @PathVariable long id,
                            Model model) {
-        if (session.getAttribute("user") == null) {
-            return "/posts/login";
-        }
         Post post = postsDao.findById(id);
         model.addAttribute("thingpost", post);
         return "posts/edit";

@@ -37,20 +37,6 @@ public class UserController {
         return "/login";
     }
 
-
-/*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
-/*|><<>><<>><<>><<>><<>><<>><<> USER LOGOUT <<>><<>><<>><<>><<>><<>><<>><<>><|*/
-/*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
-    @GetMapping("/logout")
-    public String login(HttpSession session){
-        if (session.getAttribute("user") != null) {
-            session.invalidate();
-            return "/posts/login";
-        }
-        return "redirect:/posts";
-    }
-
-
 /*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
 /*|><<>><<>><<>><<>><<>><<>><<> USER REGISTER >><<>><<>><<>><<>><<>><<>><<>><|*/
 /*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
@@ -70,9 +56,24 @@ public class UserController {
 /*|><<>><<>><<>><<>><<>><<>><<> USER PROFILE <>><<>><<>><<>><<>><<>><<>><<>><|*/
 /*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
     @GetMapping("/profile")
-    public String userProfile(){
+    public String showProfile(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long userId = user.getId();
+        user = userDao.findById(userId);
+        model.addAttribute("user", user);
+        System.out.println(user.getUsername());
         return "profile";
+    }
+
+    @PostMapping("/profile")
+    public String changeProfile(@RequestParam(name="email") String email){
+        System.out.println("Post mapping hit");
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long userId = user.getId();
+        user = userDao.findById(userId);
+        user.setEmail(email);
+        userDao.save(user);
+        return "redirect:/profile";
     }
 
 

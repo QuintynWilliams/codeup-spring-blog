@@ -15,7 +15,7 @@ public class SecConfig {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/posts/create", "/posts/comment", "/posts/*/edit").authenticated()
+                .requestMatchers("/create", "/posts/comment", "/posts/*/edit", "/logout", "/profile").authenticated()
                 .requestMatchers("/posts", "/posts/**", "/register", "/login").permitAll()
                 .requestMatchers("/css/**", "/js/**").permitAll()
         );
