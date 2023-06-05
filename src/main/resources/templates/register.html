@@ -9,7 +9,7 @@
     <div class="row">
       <div class="column">
 
-        <form action="/register" method="POST" class="form login-form">
+        <form th:action="@{/register}" th:method="post" class="form login-form">
           <div class="form-group-wrapper">
             <h1>Welcome!</h1>
 
@@ -27,10 +27,6 @@
                 <div class="column">
                   <label class="card-title" for="password">Password</label>
                   <input class="card-text" id="password" name="password" type="password" required>
-                </div>
-                <div class="column">
-                  <label class="card-title" for="conf_password">Confirm Password</label>
-                  <input class="card-text" id="conf_password" name="conf_password" type="password" required>
                 </div>
                 <input type="submit" class="btn btn-primary" id="register-btn" value="Create Account">
               </div>

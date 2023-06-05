@@ -14,10 +14,10 @@ import java.util.List;
 @Controller
 public class PostController {
 
-    private final EmailService emailService;
     private PostRepository postsDao;
     private UserRepository usersDao;
     private CommentRepository commentsDao;
+    private final EmailService emailService;
 
     public PostController(EmailService emailService, PostRepository postsDao, UserRepository usersDao, CommentRepository commentsDao){
         this.emailService = emailService;

@@ -1,55 +1,40 @@
 package com.codeup.codeupspringblog.controllers;
 
-import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
 import com.codeup.codeupspringblog.repositories.UserRepository;
-import com.codeup.codeupspringblog.util.Password;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.AttributedString;
-import java.util.List;
 
 @Controller
 public class UserController {
 
     private UserRepository userDao;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userDao){
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder){
         this.userDao = userDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
 /*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
 /*|><<>><<>><<>><<>><<>><<>><<>> USER LOGIN <<>><<>><<>><<>><<>><<>><<>><<>><|*/
 /*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
-
     @GetMapping("/login")
-    public String login(@ModelAttribute("user") User user, HttpSession session){
-        if (session.getAttribute("user") == null) {
-            return "/posts/login";
-        }
-        return "redirect:/posts";
+    public String showLoginForm(){
+        return "/login";
     }
-
     @PostMapping("/login")
-    public String userLogin(HttpSession session,
-                            @RequestParam(name = "username") String username,
-                            @RequestParam(name = "password") String password){
-        User user = userDao.findByUsername(username);
-
-        boolean validAttempt = Password.check(password, user.getPassword());
-
-        if (user == null) {
-            return "redirect:/login";
-        } else if (!validAttempt) {
-            return "redirect:/login";
-        } else {
-            session.setAttribute("user", user);
-            return "redirect:/";
-        }
+    public String loginSessionSetter(Model model, HttpSession session){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        session.setAttribute("user", user);
+        System.out.println(user.getUsername() + " is logged in");
+        return "/login";
     }
 
 
@@ -70,40 +55,24 @@ public class UserController {
 /*|><<>><<>><<>><<>><<>><<>><<> USER REGISTER >><<>><<>><<>><<>><<>><<>><<>><|*/
 /*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
     @GetMapping("/register")
-    public String registerUser(@ModelAttribute("user") User user, HttpSession session){
-        if (session.getAttribute("user") == null) {
-            return "/posts/register";
-        }
-        return "redirect:/posts";
+    public String showRegistrationForm(){
+        return "register";
     }
 
     @PostMapping("/register")
-    public String createUser(@RequestParam(name = "username") String username,
-                             @RequestParam(name = "email") String email,
-                             @RequestParam(name = "password") String password,
-                             @RequestParam(name = "conf_password") String conf_password
-                             ){
-        if (!password.equals(conf_password)) {
-            return "redirect:/register";
-        }
-        User newUser = new User(username, email, Password.hash(password));
-        userDao.save(newUser);
-        return "redirect:/login";
+    public String registerUser(@RequestParam(name="username") String username, @RequestParam(name="email") String email, @RequestParam(name = "password") String password){
+        password = passwordEncoder.encode(password);
+        userDao.save(new User(username, email, password));
+        return "redirect:/posts";
     }
-
 
 /*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
 /*|><<>><<>><<>><<>><<>><<>><<> USER PROFILE <>><<>><<>><<>><<>><<>><<>><<>><|*/
 /*|><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><|*/
     @GetMapping("/profile")
-    public String userProfile(@ModelAttribute("user") User user,
-                              HttpSession session,
-                              Model model){
-        if (session.getAttribute("user") == null) {
-            return "/posts/register";
-        }
-        model.addAttribute("user", user);
-        return "/posts/profile";
+    public String userProfile(){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return "profile";
     }
 
 
